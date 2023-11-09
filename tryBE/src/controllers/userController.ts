@@ -14,6 +14,10 @@ export default new (class UserController {
     return await userService.login(req, res);
   }
 
+  async check(req: Request, res: Response) {
+    return await userService.check(req, res);
+  }
+
   async update(req: Request, res: Response) {
     return await userService.update(req, res);
   }

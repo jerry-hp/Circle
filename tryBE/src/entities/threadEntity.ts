@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { User } from "./userEntity";
 import { Replies } from "./replyEntity";
 import { Likes } from "./likeEntity";
@@ -21,6 +21,7 @@ export class Thread {
   like: Likes[];
 
   @OneToMany(() => Replies, (replies) => replies.thread)
+  
   replies: Replies[];
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

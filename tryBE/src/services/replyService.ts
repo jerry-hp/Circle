@@ -59,5 +59,4 @@ export default new (class ReplyService {
       return res.status(400).json({ error: err });
     }
   }
-
 })();

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, JoinColumn, UpdateDateColumn, CreateDateColumn, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, JoinColumn, UpdateDateColumn, CreateDateColumn, ManyToOne, OneToOne, JoinTable } from "typeorm";
 import { Thread } from "./threadEntity";
 import { User } from "./userEntity";
 
@@ -11,14 +11,15 @@ export class Likes {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  @JoinColumn()
-  thread: Thread[];
+  @JoinTable()
+  thread: Thread;
 
   @ManyToOne(() => User, (user) => user.like, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  user: User[];
+  @JoinTable()
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;

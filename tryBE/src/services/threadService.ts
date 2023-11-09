@@ -10,7 +10,40 @@ export default new (class ThreadService {
 
   async find(req: Request, res: Response): Promise<Response> {
     try {
-      const threads = await this.threadRepository.find({ relations: ["user", "like", "replies"], order: { id: "DESC" } });
+      const threads = await this.threadRepository.find({
+        relations: ["user", "like", "like.user", "replies", "replies.user"], // Menambahkan "replies.user" untuk memuat data pengguna dalam "Replies"
+        order: { id: "DESC" },
+        select: {
+          id: true,
+          content: true,
+          image: true,
+          like: {
+            id: true,
+            user: {
+              id: true,
+              username: true,
+              full_name: true,
+            },
+          },
+          replies: {
+            id: true,
+            content: true,
+            image: true,
+            user: {
+              id: true,
+              username: true,
+              full_name: true,
+              profile_picture: true,
+            },
+          },
+          user: {
+            id: true,
+            username: true,
+            full_name: true,
+            profile_picture: true,
+          },
+        },
+      });
 
       return res.status(200).json({ threads });
     } catch (err) {

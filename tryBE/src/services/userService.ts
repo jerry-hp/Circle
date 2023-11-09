@@ -13,8 +13,7 @@ export default new (class UserService {
   async find(req: Request, res: Response): Promise<Response> {
     try {
       const users = await this.userRepository.find();
-
-      return res.status(200).json({ users });
+      return res.status(200).json( {users} );
     } catch (err) {
       console.log({ user: err });
     }
@@ -59,11 +58,31 @@ export default new (class UserService {
         return res.status(400).json({ error: "invalid password" });
       }
 
-      const token = jwt.sign({ id: checkUser[0].id }, "ikoSecretKeyMah", { expiresIn: "1h" });
+      const token = jwt.sign({ id: checkUser[0].id }, "ikoSecretKeyMah", { expiresIn: "3h" });
 
       return res.status(200).json({ token, user: checkUser[0] });
     } catch (err) {
       return res.status(400).json({ error: err });
+    }
+  }
+
+  //for check authtentication
+  async check(req: Request, res: Response): Promise<Response> {
+    try {
+      const loginSession = res.locals.loginSession;
+      console.log({ loginSession });
+      const user = await this.userRepository.findOne({
+        where: {
+          id: loginSession.idUser,
+        },
+      });
+
+      return res.status(200).json({
+        user,
+        message: "You are logged in",
+      });
+    } catch (err) {
+      return res.status(500).json({ Error: "Error while checking" });
     }
   }
 
