@@ -4,8 +4,6 @@ import AuthenticationMiddlewares from "../middlewares/auth";
 
 const router = express.Router();
 
-router.get("/follows", AuthenticationMiddlewares.Authentication, followController.find);
-router.post("/follow", AuthenticationMiddlewares.Authentication, followController.create);
+router.post("/follow/:id", AuthenticationMiddlewares.Authentication, followController.follow);
 
 export default router;
-import { Request, Response, NextFunction } from "express";

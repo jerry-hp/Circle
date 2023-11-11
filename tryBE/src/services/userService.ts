@@ -13,7 +13,8 @@ export default new (class UserService {
   async find(req: Request, res: Response): Promise<Response> {
     try {
       const users = await this.userRepository.find();
-      return res.status(200).json( {users} );
+
+      return res.status(200).json({ users });
     } catch (err) {
       console.log({ user: err });
     }

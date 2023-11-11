@@ -7,7 +7,7 @@ import { useState } from "react";
 function search() {
   const [muncul, setMuncul] = useState(false);
   const [user, setUser] = useState([]);
-  const { data } = useQuery("users", async () => {
+  const { data } = useQuery("user", async () => {
     const response = await api.get("/users");
     return response.data.users;
   });
