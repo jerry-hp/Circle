@@ -1,9 +1,10 @@
 import * as express from "express";
 import followController from "../controllers/followController";
-import AuthenticationMiddlewares from "../middlewares/auth";
 
 const router = express.Router();
 
-router.post("/follow/:id", AuthenticationMiddlewares.Authentication, followController.follow);
+router.get("/follows", followController.find);
+router.post("/follow", followController.create);
+router.delete("/follow", followController.delete);
 
 export default router;

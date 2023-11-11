@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
-import FollowService from "../services/followService";
+import followEntitty from "../services/followService";
 
 export default new (class FollowController {
-  async follow(req: Request, res: Response) {
-    return await FollowService.follow(req, res);
+  find(req: Request, res: Response) {
+    followEntitty.find(req, res);
+  }
+  create(req: Request, res: Response) {
+    followEntitty.create(req, res);
+  }
+  delete(req: Request, res: Response) {
+    followEntitty.delete(req, res);
   }
 })();

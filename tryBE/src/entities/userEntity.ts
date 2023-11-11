@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from "typeorm";
 import { Thread } from "./threadEntity";
 import { Replies } from "./replyEntity";
 import { Likes } from "./likeEntity";
+import Follow from "./followEntity";
 
 @Entity()
 export class User {
@@ -47,23 +48,23 @@ export class User {
   })
   replies: Replies[];
 
-  @ManyToMany(() => User, (user) => user.users)
-  @JoinTable({
-    name: "following",
-    joinColumn: {
-      name: "following_id",
-      referencedColumnName: "id",
-    },
-    inverseJoinColumn: {
-      name: "follower_id",
-      referencedColumnName: "id",
-    },
+  @OneToMany(() => Follow, (follow) => follow.follower_id, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
-  users!: User[];
+  @JoinColumn()
+  follower: User[];
+
+  @OneToMany(() => Follow, (follow) => follow.following_id, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn()
+  following: User[];
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-  update_at: Date;
+  updated_at: Date;
 }

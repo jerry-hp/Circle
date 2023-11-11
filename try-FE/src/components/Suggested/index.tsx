@@ -7,7 +7,7 @@ export function SuggestedFollow() {
   const userId = useSelector((state: any) => state.auth.id);
   const { data } = useQuery("users", async () => {
     const res = await api.get("/users");
-    return res.data.user;
+    return res.data.users;
   });
   const users = data?.filter((item: any, index: number) => item.id != userId && index < 4);
   console.log(users);
