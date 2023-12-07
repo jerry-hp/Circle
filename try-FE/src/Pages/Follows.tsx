@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Layout from "../layouts/Main";
-import "../tailwind.css";
 import { api } from "../libs/api/api";
 import { useSelector } from "react-redux";
 import { useQuery } from "react-query";
