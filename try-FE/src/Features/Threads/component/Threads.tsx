@@ -24,7 +24,7 @@ export default function Threads() {
   return (
     <>
       <Box boxSizing="border-box" p="10px">
-        <Text color="white" mb="10px">
+        <Text display={{ base: "none", lg: "block" }} color="white" mb="10px">
           Home
         </Text>
         <Formstatus />

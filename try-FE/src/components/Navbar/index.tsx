@@ -17,29 +17,40 @@ export function Navbar() {
 
   return (
     <div>
-      <Box color="white" boxSizing="border-box" p="10px 25px" display={"flex"} flexDirection={"column"} gap={"1rem"} position={"fixed"} minH="100vh">
-        <Heading mb="1rem" color="#008000" size={"4xl"}>
+      <Box
+        color="white"
+        backgroundColor={{ base: "#008000", lg: "transparent" }}
+        boxSizing="border-box"
+        p="10px 25px"
+        display={"flex"}
+        justifyContent={{ base: "center", lg: "start" }}
+        flexDirection={{ base: "row", lg: "column" }}
+        gap={{ base: "2rem", lg: "1rem" }}
+        position={{ lg: "fixed" }}
+        minH={{ lg: "100vh" }}
+      >
+        <Heading mb={{ lg: "1rem" }} color="#008000" display={{ base: "none", lg: "flex" }} size={{ base: "xl", lg: "4xl" }}>
           circle
         </Heading>
-        <Text display={"flex"} alignItems={"center"} gap={"10px"} onClick={() => navigate("/")} cursor={"pointer"}>
+        <Text display={"flex"} flexDirection={{ base: "column", lg: "row" }} alignItems={"center"} gap={{ base: 0, lg: "10px" }} onClick={() => navigate("/")} cursor={"pointer"}>
           <FaHome /> Home
         </Text>
-        <Text display={"flex"} alignItems={"center"} gap={"10px"} onClick={() => navigate("/search")} cursor={"pointer"}>
+        <Text display={"flex"} flexDirection={{ base: "column", lg: "row" }} alignItems={"center"} gap={{ base: 0, lg: "10px" }} onClick={() => navigate("/search")} cursor={"pointer"}>
           <FaSearch />
           Search
         </Text>
-        <Text display={"flex"} alignItems={"center"} gap={"10px"} onClick={() => navigate("/follows")} cursor={"pointer"}>
+        <Text display={"flex"} flexDirection={{ base: "column", lg: "row" }} alignItems={"center"} gap={{ base: 0, lg: "10px" }} onClick={() => navigate("/follows")} cursor={"pointer"}>
           <FaHeart />
           Follows
         </Text>
-        <Text display={"flex"} alignItems={"center"} gap={"10px"} onClick={() => navigate("/profile")} cursor={"pointer"}>
+        <Text display={"flex"} flexDirection={{ base: "column", lg: "row" }} alignItems={"center"} gap={{ base: 0, lg: "10px" }} onClick={() => navigate("/profile")} cursor={"pointer"}>
           <CgProfile />
           Profile
         </Text>
-        <Button mt="1rem" variant={"unstyled"} bg="#008000" p="10px 60px" borderRadius={"40px"}>
+        <Button display={{ base: "none", lg: "flex" }} mt="1rem" variant={"unstyled"} bg="#008000" p="10px 60px" borderRadius={"40px"}>
           Create Post
         </Button>
-        <Button position="absolute" bottom="2%" display="flex" alignItems="center" variant={"unstyled"} p="10px 60px" onClick={handleLogOut}>
+        <Button position="absolute" left={{ md: "3px" }} bottom="2%" display={{ base: "none", md: "flex" }} alignItems="center" variant={"unstyled"} p="10px 60px" onClick={handleLogOut}>
           <CgLogOut />
           Log Out
         </Button>

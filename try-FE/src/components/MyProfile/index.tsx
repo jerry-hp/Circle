@@ -27,7 +27,7 @@ export function MyProfile({ Hphoto }: { Hphoto: string }) {
         <Text color="white" mb="10px">
           My Profile
         </Text>
-        <Image src={dataProfil.profile_picture} w="100%" h="80px" height={Hphoto} borderRadius="10px" />
+        <Image src={"https://img.freepik.com/free-photo/flag-indonesia_1401-133.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais"} w="100%" h="80px" height={Hphoto} borderRadius="10px" />
         <Image src={dataProfil.profile_picture} borderRadius="50%" w="60px" h="60px" m="0 20px" position="absolute" top={Hphoto ? "170px" : "100px"} border="5px solid #403d39" />
         <Box display="flex" justifyContent="end" mt="1rem">
           {Hphoto ? (
